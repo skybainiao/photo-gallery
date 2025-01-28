@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
-    <title>我的照片库</title>
+    <title>WePic</title>
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
     <!-- 密码弹窗 -->
     <div id="passwordModal" class="modal">
         <div class="modal-content">
-            <h2>请输入密码</h2>
+            <h2>WePic</h2>
+             
             <input type="password" id="mainPassword" placeholder="密码">
+            <p id="passwordError" style="color: red; display: none;">密码输入错误，请重试。</p>
             <button id="submitPassword">确定</button>
         </div>
     </div>
 
     <!-- 主容器，默认隐藏 -->
     <div class="container" style="display:none;">
-        <h1>我的照片库</h1>
-        
+        <h1>WePic</h1>
+
         <!-- 创建文件夹区域 -->
         <div class="folder-box">
             <input type="text" id="folderName" placeholder="文件夹名称">
@@ -31,6 +35,12 @@
         <div class="folder-list" id="folderList"></div>
     </div>
 
+    <!-- 文件夹页面，假设这里有照片显示区域 -->
+    <div class="folder-page" style="display: none;">
+        <h2 id="folderTitle"></h2>
+        <div class="photo-list" id="photoList"></div>
+    </div>
+
     <!-- 照片放大查看模态窗 -->
     <div id="photoModal" class="modal">
         <span class="close">&times;</span>
@@ -40,4 +50,5 @@
     <!-- Firebase SDK -->
     <script type="module" src="app.js"></script>
 </body>
+
 </html>

@@ -27,7 +27,29 @@ const db = getDatabase(app);
 const storage = getStorage(app);
 
 // 默认主密码
-const MAIN_PASSWORD = "223658";
+const MAIN_PASSWORD = "123";
+
+// 获取密码输入框、提交按钮和错误提示元素
+const mainPasswordInput = document.getElementById('mainPassword');
+const submitPasswordButton = document.getElementById('submitPassword');
+const passwordError = document.getElementById('passwordError');
+
+// 为提交按钮添加点击事件监听器
+submitPasswordButton.addEventListener('click', () => {
+    const enteredPassword = mainPasswordInput.value;
+    const correctPassword = '223658'; // 正确的密码
+
+    if (enteredPassword === correctPassword) {
+        // 密码正确，隐藏错误提示，显示主容器
+        passwordError.style.display = 'none';
+        document.getElementById('passwordModal').style.display = 'none';
+        document.querySelector('.container').style.display = 'block';
+        // 这里可以添加匿名登录等后续逻辑
+    } else {
+        // 密码错误，显示错误提示
+        passwordError.style.display = 'block';
+    }
+});
 
 // 等待 DOM 加载完成后绑定事件
 document.addEventListener('DOMContentLoaded', () => {
@@ -143,7 +165,7 @@ async function showPhotos(folderId, folderName) {
     // 绑定返回按钮事件
     document.getElementById('backButton').addEventListener('click', () => {
         container.innerHTML = `
-            <h1>我的照片库</h1>
+            <h1>WePic</h1>
             
             <!-- 创建文件夹区域 -->
             <div class="folder-box">
@@ -263,7 +285,7 @@ async function uploadFile(folderId) {
             console.error('上传失败:', error);
             alert('上传失败，请重试。');
         },
-        async () => {
+        async () => { 
             try {
                 const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
                 console.log('下载链接:', downloadURL);
