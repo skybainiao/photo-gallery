@@ -273,8 +273,8 @@ h1 {
 }
 
 #passwordModal input[type="password"] {
-    width: 100%;
-    padding: 12px; /* 增大内边距 */
+    width: 80%;
+    padding: 10px; /* 增大内边距 */
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 8px; /* 增大圆角 */
