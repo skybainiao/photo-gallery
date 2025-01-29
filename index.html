@@ -27,7 +27,13 @@
         <div class="folder-list" id="folderList"></div>
 
         <!-- 悬浮加号按钮（创建文件夹） -->
-        <button id="addFolderButton" class="add-button add-folder-btn">＋</button>
+        <button id="addFolderButton" class="add-button add-folder-btn" title="创建文件夹">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon plus-icon" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        </button>
     </div>
 
     <!-- 创建文件夹弹窗 -->
@@ -47,8 +53,19 @@
 
         <!-- 按钮容器 -->
         <div class="button-container">
-            <button id="backButton" class="back-button">←</button>
-            <button id="addPhotoButton" class="add-button add-photo-btn">＋</button>
+            <button id="backButton" class="back-button" title="返回主页">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon back-icon" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button id="addPhotoButton" class="add-button add-photo-btn" title="上传照片">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon plus-icon" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
         </div>
     </div>
 

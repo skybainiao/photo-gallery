@@ -1,10 +1,26 @@
-/* 全局样式 */
+/* styles.css */
+
+/* CSS Variables for Rose Gold Theme */
+:root {
+    --primary-color: #b76e79; /* Rose Gold */
+    --secondary-color: #eac4d5; /* Light Rose Gold */
+    --accent-color: #f8c8dc; /* Soft Pink */
+    --background: #fce4ec; /* Light Rose Background */
+    --button-background: var(--primary-color);
+    --button-hover-background: #a65a6c;
+    --text-color: #ffffff;
+    --folder-background: linear-gradient(135deg, #f8c8dc, #eac4d5, #b76e79);
+    --modal-background: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #e6f7ff, #f0f9ff);
+    background: var(--background);
     color: #333;
+    overflow-x: hidden;
 }
 
 .hidden {
@@ -21,7 +37,7 @@ body {
     height: 100%;
     overflow: auto;
     background: rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.3s ease;
+    animation: fadeIn 0.5s ease;
 }
 
 #passwordModal {
@@ -31,19 +47,19 @@ body {
 }
 
 .modal-content {
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    background: var(--modal-background);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 25px var(--shadow-color);
     text-align: center;
     position: relative;
-    animation: slideUp 0.3s ease;
+    animation: slideUp 0.5s ease;
 }
 
 .modal-content h2.logo {
     font-family: 'Arial Black', Gadget, sans-serif;
     font-size: 2.5rem;
-    color: #007BFF;
+    color: var(--primary-color);
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -64,28 +80,28 @@ body {
 .modal-content input[type="text"]:focus,
 .modal-content input[type="password"]:focus,
 .modal-content input[type="file"]:focus {
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(183, 110, 121, 0.5);
     outline: none;
 }
 
 .modal-content button {
     padding: 12px 24px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--button-background);
+    color: var(--text-color);
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     font-size: 1rem;
     font-weight: 600;
 }
 
 .modal-content button:hover {
-    background-color: #45a049;
+    background-color: var(--button-hover-background);
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 15px rgba(69, 160, 73, 0.3);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
 .close {
@@ -110,22 +126,22 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 25px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px var(--shadow-color);
     margin-top: 40px;
+    animation: fadeIn 1s ease;
 }
 
 h1.logo {
     text-align: center;
-    color: #007BFF;
+    color: var(--primary-color);
     margin-bottom: 20px;
     font-size: 3rem;
     font-family: 'Arial Black', Gadget, sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* 文件夹列表 */
 .folder-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -134,31 +150,32 @@ h1.logo {
 
 /* 文件夹卡片 */
 .folder-card {
-    background: linear-gradient(135deg, #ffffff, #e0f7fa);
+    background: var(--folder-background);
     border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px var(--shadow-color);
     padding: 20px;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    transition: transform 0.5s, box-shadow 0.5s, background 0.5s;
+    animation: float 6s ease-in-out infinite;
 }
 
 .folder-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    background: var(--folder-background);
 }
 
 .folder-card h3 {
     margin: 15px 0;
-    color: #007BFF;
+    color: var(--text-color);
     font-size: 1.6rem;
     font-weight: bold;
     text-transform: uppercase;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* 文件夹页面基础样式：去掉默认margin/padding以避免空白 */
 .folder-page {
     margin: 0;
     padding: 0;
@@ -170,21 +187,22 @@ h1.logo {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
     padding: 20px;
+    animation: fadeIn 1s ease;
 }
 
-/* 照片卡片 */
 .photo-card {
-    background: linear-gradient(135deg, #ffffff, #f4faff);
+    background: var(--folder-background);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px var(--shadow-color);
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
     aspect-ratio: 1 / 1;
+    animation: float 6s ease-in-out infinite;
 }
 
 .photo-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .photo-card img {
@@ -204,14 +222,14 @@ h1.logo {
 #photoModal {
     display: none;
     position: fixed;
-    z-index: 9999; /* 确保在所有元素之上 */
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.8);
-    animation: fadeIn 0.3s ease;
+    animation: fadeIn 0.5s ease;
 }
 
 #photoModal .modal-content {
@@ -220,10 +238,10 @@ h1.logo {
     margin: auto;
     display: block;
     padding: 20px;
-    background-color: white;
+    background-color: var(--folder-background);
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    animation: zoom 0.3s ease;
+    animation: zoom 0.5s ease;
 }
 
 /* 按钮容器 */
@@ -243,7 +261,7 @@ h1.logo {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    font-size: 2rem;
+    font-size: 1.5rem;
     border: none;
     cursor: pointer;
     display: flex;
@@ -251,22 +269,21 @@ h1.logo {
     justify-content: center;
     box-sizing: border-box;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    position: relative;
 }
 
 /* 创建文件夹按钮 */
-.add-folder-btn {
-    background-color: #007BFF;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 3;
+.add-folder-btn,
+.add-photo-btn {
+    background-color: var(--button-background);
+    box-shadow: 0 4px 15px rgba(183, 110, 121, 0.3);
 }
 
-.add-folder-btn:hover {
-    background-color: #0056b3;
+.add-folder-btn:hover,
+.add-photo-btn:hover {
+    background-color: var(--button-hover-background);
     transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 8px 20px rgba(0, 85, 179, 0.3);
+    box-shadow: 0 8px 20px rgba(166, 90, 108, 0.3);
 }
 
 /* 返回按钮 */
@@ -281,16 +298,19 @@ h1.logo {
     box-shadow: 0 8px 15px rgba(90, 98, 104, 0.3);
 }
 
-/* 上传照片按钮 */
-.add-photo-btn {
-    background-color: #28a745;
-    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+/* SVG Icons */
+.icon {
+    width: 24px;
+    height: 24px;
+    stroke: var(--text-color);
 }
 
-.add-photo-btn:hover {
-    background-color: #1e7e34;
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 8px 20px rgba(30, 126, 52, 0.3);
+.plus-icon {
+    stroke-width: 3;
+}
+
+.back-icon {
+    stroke-width: 3;
 }
 
 /* 进度条 */
@@ -305,7 +325,7 @@ h1.logo {
 
 .progress {
     height: 100%;
-    background: #007BFF;
+    background: var(--primary-color);
     width: 0%;
     transition: width 0.3s ease;
 }
@@ -315,6 +335,7 @@ h1.logo {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -325,6 +346,7 @@ h1.logo {
         transform: translateY(50px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -335,33 +357,46 @@ h1.logo {
     from {
         transform: scale(0.8);
     }
+
     to {
         transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
     }
 }
 
 /* 响应式设计 */
 @media (max-width: 600px) {
     /* 调整按钮大小 */
-    .add-folder-btn,
+    .add-button,
     .back-button,
     .add-photo-btn {
         width: 40px;
         height: 40px;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .button-container {
         right: 20px;
-    }
-
-    .add-folder-btn {
         bottom: 20px;
     }
 
-    .back-button {
-        bottom: 80px;
-    }
-
+    .add-folder-btn,
     .add-photo-btn {
-        bottom: 20px;
+        width: 40px;
+        height: 40px;
     }
 
     .gallery {
@@ -446,13 +481,13 @@ h1.logo {
     .add-photo-btn {
         width: 60px;
         height: 60px;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
-    .add-folder-btn {
+    .add-folder-btn,
+    .add-photo-btn {
         width: 60px;
         height: 60px;
-        font-size: 2.5rem;
     }
 }
 
