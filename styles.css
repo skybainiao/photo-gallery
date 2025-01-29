@@ -1,230 +1,99 @@
-/* styles.css */
-
 /* 全局样式 */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #e6f7ff, #f0f9ff); /* 更换背景渐变 */
+    background: linear-gradient(135deg, #e6f7ff, #f0f9ff);
     color: #333;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* 容器半透明背景 */
-    border-radius: 15px; /* 增大圆角 */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 增强阴影 */
-    margin-top: 30px; /* 顶部留出空间 */
+.hidden {
+    display: none;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 2.5rem; /* 增大标题字体大小 */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* 添加文字阴影 */
-}
-
-/* 创建文件夹区域 */
-.folder-box {
-    background: linear-gradient(135deg, #f5f7fa, #e9f3ff); /* 更换背景渐变 */
-    padding: 20px;
-    border-radius: 12px; /* 增大圆角 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 增强阴影 */
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px; /* 增大底部间距 */
-}
-
-.folder-box input[type="text"],
-.folder-box input[type="password"] {
-    flex: 1 1 150px;
-    padding: 12px; /* 增大内边距 */
-    border: 1px solid #a8c9ff; /* 更换边框颜色 */
-    border-radius: 8px; /* 增大圆角 */
-    transition: border-color 0.3s; /* 添加过渡效果 */
-}
-
-.folder-box input[type="text"]:focus,
-.folder-box input[type="password"]:focus {
-    border-color: #007BFF; /* 聚焦时边框颜色变化 */
-    outline: none;
-}
-
-.folder-box button {
-    flex: 1 1 100px;
-    padding: 12px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 8px; /* 增大圆角 */
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* 添加过渡效果 */
-    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.3); /* 添加按钮阴影 */
-}
-
-.folder-box button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* 悬停时按钮放大 */
-}
-
-/* 文件夹列表 */
-.folder-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* 增大文件夹卡片最小宽度 */
-    gap: 20px; /* 增大间距 */
-}
-
-/* 文件夹卡片 */
-.folder-card {
-    background: linear-gradient(135deg, #ffffff, #f4faff); /* 更换背景渐变 */
-    border-radius: 12px; /* 增大圆角 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 增强阴影 */
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s; /* 添加过渡效果 */
-}
-
-.folder-card:hover {
-    transform: translateY(-8px); /* 悬停时向上移动更多 */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 悬停时增强阴影 */
-}
-
-.folder-card h3 {
-    margin: 10px 0;
-    color: #333;
-    font-size: 1.2rem; /* 增大文件夹名称字体大小 */
-}
-
-/* 上传区域 */
-.upload-box {
-    background: linear-gradient(135deg, #f5f7fa, #e9f3ff); /* 更换背景渐变 */
-    padding: 20px;
-    border-radius: 12px; /* 增大圆角 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 增强阴影 */
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px; /* 增大底部间距 */
-}
-
-.upload-box input[type="file"] {
-    flex: 1 1 200px;
-    padding: 12px; /* 增大内边距 */
-    border: 1px solid #a8c9ff; /* 更换边框颜色 */
-    border-radius: 8px; /* 增大圆角 */
-    transition: border-color 0.3s; /* 添加过渡效果 */
-}
-
-.upload-box input[type="file"]:focus {
-    border-color: #4CAF50; /* 聚焦时边框颜色变化 */
-    outline: none;
-}
-
-.upload-box button {
-    flex: 1 1 150px;
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 8px; /* 增大圆角 */
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* 添加过渡效果 */
-    box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3); /* 添加按钮阴影 */
-}
-
-.upload-box button:hover {
-    background-color: #45a049;
-    transform: scale(1.05); /* 悬停时按钮放大 */
-}
-
-/* 进度条 */
-.progress-bar {
-    width: 100%;
-    height: 12px; /* 增大进度条高度 */
-    background: #e9ecef;
-    border-radius: 6px; /* 增大圆角 */
-    overflow: hidden;
-    margin-top: 15px; /* 增大顶部间距 */
-}
-
-.progress {
-    height: 100%;
-    background: #4CAF50;
-    width: 0%;
-    transition: width 0.3s ease;
-}
-
-/* 照片库 */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 增大照片卡片最小宽度 */
-    gap: 20px; /* 增大间距 */
-}
-
-.photo-card {
-    background: linear-gradient(135deg, #ffffff, #f4faff); /* 更换背景渐变 */
-    border-radius: 12px; /* 增大圆角 */
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 增强阴影 */
-    transition: transform 0.3s, box-shadow 0.3s; /* 添加过渡效果 */
-}
-
-.photo-card:hover {
-    transform: translateY(-8px); /* 悬停时向上移动更多 */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 悬停时增强阴影 */
-}
-
-.photo-card img {
-    width: 100%;
-    height: 220px; /* 增大照片高度 */
-    object-fit: cover;
-    cursor: pointer;
-    transition: filter 0.3s; /* 添加过渡效果 */
-}
-
-.photo-card img:hover {
-    filter: brightness(0.9); /* 悬停时照片变暗 */
-}
-
-/* 照片放大查看模态窗 */
-#photoModal {
+.modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* 加深模态窗背景颜色 */
+    background: rgba(0, 0, 0, 0.5);
     animation: fadeIn 0.3s ease;
 }
 
-#photoModal .modal-content {
+#passwordModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+.modal-content h2.logo {
+    font-family: 'Arial Black', Gadget, sans-serif;
+    font-size: 2.5rem;
+    color: #007BFF;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="password"],
+.modal-content input[type="file"] {
     width: 80%;
-    max-width: 800px; /* 增大模态窗最大宽度 */
-    margin: auto;
-    display: block;
-    padding: 20px;
-    background-color: white;
-    border-radius: 15px; /* 增大圆角 */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* 增强阴影 */
-    animation: zoom 0.3s ease;
+    padding: 10px 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="password"]:focus,
+.modal-content input[type="file"]:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+}
+
+.modal-content button {
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.modal-content button:hover {
+    background-color: #45a049;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 15px rgba(69, 160, 73, 0.3);
 }
 
 .close {
     position: absolute;
-    top: 30px; /* 调整关闭按钮位置 */
-    right: 40px;
+    top: 15px;
+    right: 20px;
     color: #f1f1f1;
-    font-size: 50px; /* 增大关闭按钮字体大小 */
+    font-size: 30px;
     font-weight: bold;
     cursor: pointer;
     transition: color 0.3s;
@@ -237,69 +106,208 @@ h1 {
     cursor: pointer;
 }
 
-/* 密码弹窗样式 */
-#passwordModal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+h1.logo {
+    text-align: center;
+    color: #007BFF;
+    margin-bottom: 20px;
+    font-size: 3rem;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 文件夹列表 */
+.folder-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+/* 文件夹卡片 */
+.folder-card {
+    background: linear-gradient(135deg, #ffffff, #e0f7fa);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.folder-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+}
+
+.folder-card h3 {
+    margin: 15px 0;
+    color: #007BFF;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 文件夹页面基础样式：去掉默认margin/padding以避免空白 */
+.folder-page {
+    margin: 0;
+    padding: 0;
+}
+
+/* 照片画廊 */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* 照片卡片 */
+.photo-card {
+    background: linear-gradient(135deg, #ffffff, #f4faff);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    aspect-ratio: 1 / 1;
+}
+
+.photo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.photo-card img {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    transition: filter 0.3s;
+}
+
+.photo-card img:hover {
+    filter: brightness(0.9);
+}
+
+/* 照片放大查看模态窗 */
+#photoModal {
+    display: none;
+    position: fixed;
+    z-index: 9999; /* 确保在所有元素之上 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
     animation: fadeIn 0.3s ease;
 }
 
-#passwordModal .modal-content {
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    padding: 30px;
-    border-radius: 15px; /* 增大圆角 */
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2); /* 增强阴影 */
-    text-align: center;
-    animation: slideUp 0.3s ease;
-}
-
-#passwordModal h2 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 1.8rem; /* 增大标题字体大小 */
-}
-
-#passwordModal p {
-    margin-bottom: 20px;
-    color: #666;
-    font-size: 1.1rem; /* 增大段落字体大小 */
-}
-
-#passwordModal input[type="password"] {
+#photoModal .modal-content {
     width: 80%;
-    padding: 10px; /* 增大内边距 */
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px; /* 增大圆角 */
-    transition: border-color 0.3s; /* 添加过渡效果 */
+    max-width: 800px;
+    margin: auto;
+    display: block;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: zoom 0.3s ease;
 }
 
-#passwordModal input[type="password"]:focus {
-    border-color: #4CAF50; /* 聚焦时边框颜色变化 */
-    outline: none;
+/* 按钮容器 */
+.button-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 4;
 }
 
-#passwordModal button {
-    padding: 12px 24px; /* 增大按钮内边距 */
-    background-color: #4CAF50;
-    color: white;
+/* 悬浮按钮统一类 */
+.add-button,
+.back-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 2rem;
     border: none;
-    border-radius: 8px; /* 增大圆角 */
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* 添加过渡效果 */
-    box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3); /* 添加按钮阴影 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-#passwordModal button:hover {
-    background-color: #45a049;
-    transform: scale(1.05); /* 悬停时按钮放大 */
+/* 创建文件夹按钮 */
+.add-folder-btn {
+    background-color: #007BFF;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 3;
+}
+
+.add-folder-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 85, 179, 0.3);
+}
+
+/* 返回按钮 */
+.back-button {
+    background-color: #6c757d;
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 15px rgba(90, 98, 104, 0.3);
+}
+
+/* 上传照片按钮 */
+.add-photo-btn {
+    background-color: #28a745;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.add-photo-btn:hover {
+    background-color: #1e7e34;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(30, 126, 52, 0.3);
+}
+
+/* 进度条 */
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background: #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress {
+    height: 100%;
+    background: #007BFF;
+    width: 0%;
+    transition: width 0.3s ease;
 }
 
 /* 动画效果 */
@@ -332,21 +340,99 @@ h1 {
     }
 }
 
-/* 隐藏主容器前 */
-.container.hidden {
-    display: none;
+/* 响应式设计 */
+@media (max-width: 600px) {
+    /* 调整按钮大小 */
+    .add-folder-btn,
+    .back-button,
+    .add-photo-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+        right: 20px;
+    }
+
+    .add-folder-btn {
+        bottom: 20px;
+    }
+
+    .back-button {
+        bottom: 80px;
+    }
+
+    .add-photo-btn {
+        bottom: 20px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .photo-card {
+        aspect-ratio: 1 / 1;
+    }
+
+    .photo-card img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .modal-content input[type="text"],
+    .modal-content input[type="password"],
+    .modal-content input[type="file"] {
+        width: 90%;
+        padding: 12px 16px;
+        font-size: 1rem;
+    }
+
+    .modal-content button,
+    #uploadPhotoButton {
+        width: 90%;
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+
+    .progress-bar {
+        height: 10px;
+    }
+
+    #photoModal .modal-content {
+        width: 90%;
+        max-width: none;
+        height: auto;
+    }
+
+    #photoModal img {
+        width: 100%;
+        height: auto;
+    }
+
+    .close {
+        top: 10px;
+        right: 15px;
+        font-size: 25px;
+    }
+
+    .container {
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .folder-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .folder-card h3 {
+        font-size: 1.2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
-/* 响应式设计 */
 @media (min-width: 600px) {
-    .upload-box {
-        flex-wrap: nowrap;
-    }
-
-    .upload-box input[type="file"] {
-        flex: 0 0 auto;
-    }
-
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
@@ -354,21 +440,23 @@ h1 {
     .photo-card img {
         height: 250px;
     }
+
+    /* 确保按钮大小一致 */
+    .back-button,
+    .add-photo-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    .add-folder-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 2.5rem;
+    }
 }
 
 @media (min-width: 900px) {
-    .upload-box {
-        padding: 25px;
-    }
-
-    .folder-box {
-        padding: 25px;
-    }
-
-    .folder-box button {
-        padding: 15px 30px;
-    }
-
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }

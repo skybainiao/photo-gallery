@@ -12,8 +12,7 @@
     <!-- 密码弹窗 -->
     <div id="passwordModal" class="modal">
         <div class="modal-content">
-            <h2>WePic</h2>
-             
+            <h2 class="logo">WePic</h2>
             <input type="password" id="mainPassword" placeholder="密码">
             <p id="passwordError" style="color: red; display: none;">密码输入错误，请重试。</p>
             <button id="submitPassword">确定</button>
@@ -21,24 +20,49 @@
     </div>
 
     <!-- 主容器，默认隐藏 -->
-    <div class="container" style="display:none;">
-        <h1>WePic</h1>
-
-        <!-- 创建文件夹区域 -->
-        <div class="folder-box">
-            <input type="text" id="folderName" placeholder="文件夹名称">
-            <input type="password" id="folderPassword" placeholder="文件夹密码（可选）">
-            <button id="createFolderButton">创建文件夹</button>
-        </div>
+    <div class="container hidden">
+        <h1 class="logo">WePic</h1>
 
         <!-- 文件夹列表 -->
         <div class="folder-list" id="folderList"></div>
+
+        <!-- 悬浮加号按钮（创建文件夹） -->
+        <button id="addFolderButton" class="add-button add-folder-btn">＋</button>
+    </div>
+
+    <!-- 创建文件夹弹窗 -->
+    <div id="createFolderModal" class="modal">
+        <div class="modal-content">
+            <h2>创建文件夹</h2>
+            <input type="text" id="folderName" placeholder="文件夹名称">
+            <input type="password" id="folderPassword" placeholder="文件夹密码（可选）">
+            <button id="createFolderButton">创建文件夹</button>
+            <span class="close">&times;</span>
+        </div>
     </div>
 
     <!-- 文件夹页面，假设这里有照片显示区域 -->
-    <div class="folder-page" style="display: none;">
-        <h2 id="folderTitle"></h2>
-        <div class="photo-list" id="photoList"></div>
+    <div class="folder-page hidden">
+        <div class="gallery" id="photoGallery"></div>
+
+        <!-- 按钮容器 -->
+        <div class="button-container">
+            <button id="backButton" class="back-button">←</button>
+            <button id="addPhotoButton" class="add-button add-photo-btn">＋</button>
+        </div>
+    </div>
+
+    <!-- 上传照片弹窗 -->
+    <div id="uploadPhotoModal" class="modal">
+        <div class="modal-content">
+            <h2>上传照片</h2>
+            <input type="file" id="fileInput" accept="image/*">
+            <button id="uploadPhotoButton">上传照片</button>
+            <div class="progress-bar">
+                <div class="progress" id="uploadProgress"></div>
+            </div>
+            <span class="close">&times;</span>
+        </div>
     </div>
 
     <!-- 照片放大查看模态窗 -->
