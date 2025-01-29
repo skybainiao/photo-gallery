@@ -3,8 +3,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js";
-import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-import { getDatabase, ref, push, set, query, orderByChild, equalTo, get } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+ import { getDatabase, ref, push, set, query, orderByChild, equalTo, get } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
 
 // Your web app's Firebase configuration
@@ -22,7 +21,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const auth = getAuth(app);
 const db = getDatabase(app);
 const storage = getStorage(app);
 
@@ -34,41 +32,20 @@ const mainPasswordInput = document.getElementById('mainPassword');
 const submitPasswordButton = document.getElementById('submitPassword');
 const passwordError = document.getElementById('passwordError');
 
-// 为提交按钮添加点击事件监听器
-submitPasswordButton.addEventListener('click', () => {
-    const enteredPassword = mainPasswordInput.value;
-    const correctPassword = '223658'; // 正确的密码
+ 
 
-    if (enteredPassword === correctPassword) {
-        // 密码正确，隐藏错误提示，显示主容器
-        passwordError.style.display = 'none';
-        document.getElementById('passwordModal').style.display = 'none';
-        document.querySelector('.container').style.display = 'block';
-        // 这里可以添加匿名登录等后续逻辑
-    } else {
-        // 密码错误，显示错误提示
-        passwordError.style.display = 'block';
-    }
-});
-
-// 等待 DOM 加载完成后绑定事件
 document.addEventListener('DOMContentLoaded', () => {
+    // 定义正确的主密码
+    const CORRECT_PASSWORD = "123"; // 设置你自己的密码
+
     // 密码验证
     const submitPasswordBtn = document.getElementById('submitPassword');
     submitPasswordBtn.addEventListener('click', () => {
-        const inputPassword = document.getElementById('mainPassword').value;
-        if (inputPassword === MAIN_PASSWORD) {
+        const inputPassword = document.getElementById('mainPassword').value.trim();
+        if (inputPassword === CORRECT_PASSWORD) {
             document.getElementById('passwordModal').style.display = 'none';
             document.querySelector('.container').style.display = 'block';
-            signInAnonymously(auth)
-              .then(() => {
-                console.log("匿名登录成功");
-                loadFolders();
-              })
-              .catch(error => {
-                console.error("登录失败:", error);
-                alert('匿名登录失败，请刷新页面重试。');
-              });
+            loadFolders(); // 直接加载文件夹
         } else {
             alert('密码错误，请重试。');
         }
@@ -104,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 
 // 加载文件夹
 async function loadFolders() {
