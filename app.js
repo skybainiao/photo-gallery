@@ -478,4 +478,6 @@ document.addEventListener('DOMContentLoaded', () => {
         div.textContent = text;
         return div.innerHTML;
     }
+    
 });
+ 
