@@ -1,10 +1,8 @@
-// app.js
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js";
-import { getDatabase, ref, push, set, get } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
-import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
+import { getDatabase, ref, push, set, get, remove } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject, listAll } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -23,6 +21,9 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
 const storage = getStorage(app);
+
+// 全局声明 currentFolderId
+let currentFolderId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     // 获取密码输入框、提交按钮和错误提示元素
@@ -43,8 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const backButton = document.getElementById('backButton');
     const closeButtons = document.querySelectorAll('.close');
 
-    // 当前文件夹ID
-    let currentFolderId = null;
+    // 删除按钮
+    const deleteFolderButton = document.getElementById('deleteFolderButton');
+    const deletePhotoButton = document.getElementById('deletePhotoButton');
 
     // 密码验证
     submitPasswordButton.addEventListener('click', () => {
@@ -139,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
         }
-        currentFolderId = folderId;
+        currentFolderId = folderId; // 设置全局 currentFolderId
         document.querySelector('.container').classList.add('hidden');
         const folderPage = document.querySelector('.folder-page');
         folderPage.classList.remove('hidden');
@@ -255,5 +257,102 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         );
+    }
+
+    // 删除文件夹（包括数据库记录和存储文件）
+    deleteFolderButton.addEventListener('click', async () => {
+        if (!currentFolderId) {
+            alert('未选择任何文件夹！');
+            return;
+        }
+
+        const confirmDelete = confirm('确定要删除整个文件夹及其中的所有照片吗？');
+        if (!confirmDelete) return;
+
+        try {
+            // 1️⃣ 删除 Firebase Realtime Database 的文件夹和照片记录
+            await remove(ref(db, `folders/${currentFolderId}`));
+            await remove(ref(db, `photos/${currentFolderId}`));
+
+            // 2️⃣ 删除 Firebase Storage 中的所有照片
+            const storageFolderRef = storageRef(storage, `photos/${currentFolderId}`);
+            await deleteFolderContents(storageFolderRef);
+
+            alert('文件夹已成功删除！');
+            document.querySelector('.folder-page').classList.add('hidden');
+            document.querySelector('.container').classList.remove('hidden');
+            loadFolders();
+        } catch (error) {
+            console.error('删除文件夹失败:', error);
+            alert(`删除失败，请重试。\n错误信息: ${error.message}`);
+        }
+    });
+
+    // 删除照片
+    deletePhotoButton.addEventListener('click', async () => {
+        const enlargedPhoto = document.getElementById('enlargedPhoto');
+        const photoUrl = enlargedPhoto.src;
+
+        if (!currentFolderId || !photoUrl) {
+            alert('未选择文件夹或照片！');
+            return;
+        }
+
+        const confirmDelete = confirm('确定要删除这张照片吗？');
+        if (!confirmDelete) return;
+
+        try {
+            // 1️⃣ 获取 Firebase Database 中的照片路径
+            const photosSnapshot = await get(ref(db, `photos/${currentFolderId}`));
+            let photoKeyToDelete = null;
+            let storagePath = null;
+
+            if (photosSnapshot.exists()) {
+                const photos = photosSnapshot.val();
+                for (const key in photos) {
+                    if (photos[key].url === photoUrl) {
+                        photoKeyToDelete = key;
+                        storagePath = photos[key].url.split('/o/')[1].split('?')[0].replace(/%2F/g, '/'); // 解析存储路径
+                        break;
+                    }
+                }
+            }
+
+            // 2️⃣ 删除数据库中的照片记录
+            if (photoKeyToDelete) {
+                await remove(ref(db, `photos/${currentFolderId}/${photoKeyToDelete}`));
+            }
+
+            // 3️⃣ 删除 Firebase 存储中的照片
+            if (storagePath) {
+                const photoRef = storageRef(storage, storagePath);
+                await deleteObject(photoRef);
+            }
+
+            alert('照片已删除！');
+            photoModal.style.display = 'none';
+            loadPhotos(currentFolderId);
+        } catch (error) {
+            console.error('删除照片失败:', error);
+            
+            if (error.message.includes("does not exist")) {
+                console.warn("照片可能已经被删除。");
+            } else {
+                alert(`删除失败，请重试。\n错误信息: ${error.message}`);
+            }
+        }
+    });
+
+    // 删除文件夹中的所有文件
+    async function deleteFolderContents(folderRef) {
+        try {
+            const fileList = await listAll(folderRef);
+            for (const item of fileList.items) {
+                await deleteObject(item);
+            }
+        } catch (error) {
+            console.error("删除存储文件失败:", error);
+            // ❌ 这里不要让它抛出错误，否则会误触发“删除失败”
+        }
     }
 });

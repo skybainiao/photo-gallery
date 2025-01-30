@@ -538,3 +538,52 @@ h1.logo {
         height: 40px;
     }
 }
+
+
+/* 删除文件夹按钮 */
+.delete-folder-btn {
+    background-color: #ff4d4f; /* 红色 */
+    box-shadow: 0 4px 15px rgba(255, 77, 79, 0.3);
+}
+
+.delete-folder-btn:hover {
+    background-color: #d9363e;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 77, 79, 0.3);
+}
+
+/* 删除照片按钮 */
+.delete-photo-btn {
+    margin-top: 10px;
+    padding: 12px 24px;
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.delete-photo-btn:hover {
+    background-color: #d9363e;
+    transform: translateY(-3px);
+}
+
+/* 适配手机端布局 */
+@media (max-width: 600px) {
+    .button-container {
+        flex-direction: row; /* 横向排列 */
+        justify-content: center;
+        bottom: 20px;
+    }
+
+    .delete-folder-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .delete-photo-btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}

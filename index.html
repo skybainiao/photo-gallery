@@ -51,22 +51,39 @@
     <div class="folder-page hidden">
         <div class="gallery" id="photoGallery"></div>
 
-        <!-- 按钮容器 -->
-        <div class="button-container">
-            <button id="backButton" class="back-button" title="返回主页">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon back-icon" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-            </button>
-            <button id="addPhotoButton" class="add-button add-photo-btn" title="上传照片">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon plus-icon" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-            </button>
-        </div>
+        <!-- 文件夹页面，增加删除文件夹按钮 -->
+<div class="button-container">
+    <button id="backButton" class="back-button" title="返回主页">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon back-icon" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </button>
+    <button id="addPhotoButton" class="add-button add-photo-btn" title="上传照片">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon plus-icon" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+    </button>
+    <button id="deleteFolderButton" class="add-button delete-folder-btn" title="删除文件夹">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon trash-icon" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m14-3H5a1 1 0 0 1-1-1V2h16v1a1 1 0 0 1-1 1z"></path>
+        </svg>
+    </button>
+</div>
+
+<!-- 照片放大查看模态窗 -->
+<div id="photoModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img class="enlarged-photo" id="enlargedPhoto">
+        <button id="deletePhotoButton" class="delete-photo-btn">删除照片</button>
+    </div>
+</div>
+
     </div>
 
     <!-- 上传照片弹窗 -->
