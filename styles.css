@@ -592,11 +592,16 @@ h1.logo {
 /* 现有的样式... */
 
 /* 留言板页面样式 */
+.message-board-page.hidden {
+    display: none !important;
+}
+
 .message-board-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    
     
 }
 
@@ -607,7 +612,7 @@ h1.logo {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 15px var(--shadow-color);
- 
+     
 }
 
 .message-board-container h2 {
