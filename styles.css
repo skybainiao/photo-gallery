@@ -587,3 +587,119 @@ h1.logo {
         padding: 8px 16px;
     }
 }
+
+
+/* 现有的样式... */
+
+/* 留言板页面样式 */
+.message-board-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    
+}
+
+.message-board-container {
+    max-width: 800px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+ 
+}
+
+.message-board-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.message-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 10px;
+}
+
+.message-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.message-item:last-child {
+    border-bottom: none;
+}
+
+.message-item p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.message-item small {
+    color: #666;
+}
+
+.message-form {
+    display: flex;
+    gap: 10px;
+}
+
+.message-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.message-form button {
+    padding: 10px 20px;
+    background-color: var(--button-background);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.message-form button:hover {
+    background-color: var(--button-hover-background);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 调整按钮容器位置 */
+.message-board-page .button-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 4;
+}
+
+/* 响应式设计调整 */
+@media (max-width: 600px) {
+    .message-board-container {
+        padding: 15px;
+    }
+
+    .message-form {
+        flex-direction: column;
+    }
+
+    .message-form button {
+        width: 100%;
+    }
+
+    .message-list {
+        max-height: 300px;
+    }
+}
